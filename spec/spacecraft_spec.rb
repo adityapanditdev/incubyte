@@ -126,6 +126,41 @@ RSpec.describe Spacecraft do
       end
     end
 
-    
+    context 'motion in all axis' do
+      it 'should move forward in east direction while facing upward' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['r', 'u', 'f'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, 0, 1])
+      end
+
+      it 'should move backward in west direction while facing up' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['l', 'u', 'b'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, 0, -1])
+      end
+
+      it 'should move forward in west direction and facing up' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['l', 'f', 'u'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([-1, 0, 0])
+      end
+
+      it 'should move backward in North direction and facing down' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['b', 'd'])
+        expect(spacecraft.direction).to eq('Down')
+        expect(spacecraft.position).to eq([0, -1, 0])
+      end
+
+      it 'should move forward in west direction' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['l', 'f'])
+        expect(spacecraft.direction).to eq('W')
+        expect(spacecraft.position).to eq([-1, 0, 0])
+      end
+    end
   end
 end
