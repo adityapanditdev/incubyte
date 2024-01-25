@@ -2,7 +2,6 @@ RSpec.describe Spacecraft do
 
   describe '#spacecraft' do
     context 'movement' do
-      
       it 'should move forward in the North direction' do
         spacecraft = Spacecraft.new
         spacecraft.execute_commands(['f'])
@@ -54,5 +53,79 @@ RSpec.describe Spacecraft do
         expect(spacecraft.direction).to eq('W')
       end
     end
+
+    context 'angle changes' do
+      it 'should turn upward from North to Up' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['u'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, 0, 0])
+      end
+
+      it 'should turn upward from South to Up' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['l', 'l', 'u'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, 0, 0])
+      end
+
+      it 'should turn upward from East to Up' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['r', 'u'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, 0, 0])
+      end
+
+      it 'should move forward and turn up' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['f', 'u'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, 1, 0])
+      end
+
+      it 'should move backward and turn up' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['b', 'u'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, -1, 0])
+      end
+
+      it 'should turn downward from North to Down' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['d'])
+        expect(spacecraft.direction).to eq('Down')
+        expect(spacecraft.position).to eq([0, 0, 0])
+      end
+
+      it 'should turn downward from South to Down' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['r', 'r', 'd'])
+        expect(spacecraft.direction).to eq('Down')
+        expect(spacecraft.position).to eq([0, 0, 0])
+      end
+
+      it 'should turn downward from East to Down' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['r', 'd'])
+        expect(spacecraft.direction).to eq('Down')
+        expect(spacecraft.position).to eq([0, 0, 0])
+      end
+
+      it 'should move forward and turn down' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['f', 'd'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, 1, 0])
+      end
+
+      it 'should move backward and turn down' do
+        spacecraft = Spacecraft.new
+        spacecraft.execute_commands(['b', 'd'])
+        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.position).to eq([0, -1, 0])
+      end
+    end
+
+    
   end
 end
