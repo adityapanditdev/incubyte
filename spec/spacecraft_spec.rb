@@ -116,14 +116,14 @@ RSpec.describe Spacecraft do
       it 'should move forward and turn down' do
         spacecraft = Spacecraft.new
         spacecraft.execute_commands(['f', 'd'])
-        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.direction).to eq('Down')
         expect(spacecraft.position).to eq([0, 1, 0])
       end
 
       it 'should move backward and turn down' do
         spacecraft = Spacecraft.new
         spacecraft.execute_commands(['b', 'd'])
-        expect(spacecraft.direction).to eq('Up')
+        expect(spacecraft.direction).to eq('Down')
         expect(spacecraft.position).to eq([0, -1, 0])
       end
     end
