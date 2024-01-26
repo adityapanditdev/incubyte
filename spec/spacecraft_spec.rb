@@ -1,3 +1,5 @@
+require_relative '../spacecraft.rb'
+
 RSpec.describe Spacecraft do
 
   describe '#spacecraft' do
